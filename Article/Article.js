@@ -7,18 +7,39 @@ class Article {
     // create a reference to the ".expandButton" class. 
     this.expandButton = this.domElement.querySelector('.expandButton');
     // Using your expandButton reference, update the text on your expandButton to say "expand"
-    this.expandButton.textContent = "expand";
+    this.expandButton.textContent = "Click to Expand"
     // Set a click handler on the expandButton reference, calling the expandArticle method.
     this.expandArticle = this.expandArticle.bind(this);
     this.expandButton.addEventListener('click', this.expandArticle); 
+    // create a reference to the closeButton
+    this.closeButton = this.domElement.querySelector(".closeButton");
+    // set a click handler on the closeButton calling closeArticle
+    this.closeArticle = this.closeArticle.bind(this);
+    this.closeButton.addEventListener('click', this.closeArticle); 
+
   }
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
-    this.domElement.classList.toggle('article-open')
+    if (this.domElement.style.height === 200+"px"){
+
+      TweenMax.to(this.domElement, 1, {height:"auto"});
+      this.expandButton.textContent = "Click to Close";
+    } else {
+      TweenMax.to(this.domElement, 1, {height:200});
+      this.expandButton.textContent = "Click to Expand";
+    } 
+    if (this.closeButton.classList.contains("article-read")) {
+      
+    } else {
+      this.closeButton.classList.add('article-read');
+    }
+  }
+
+  closeArticle() {
+    this.domElement.classList.add('article-delete');
   }
 }
-
 /* START HERE: 
 
 - Select all classes named ".article" and assign that value to the articles variable.  

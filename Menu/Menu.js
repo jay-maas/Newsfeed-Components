@@ -3,9 +3,9 @@
 const toggleMenu = () => {
   // Toggle the "menu--open" class on your menu refence.
   if (menu.style.left === -350+"px") {
-    TweenMax.to(".menu", 1, {left:0});
+    TweenMax.to(menu, 1, {left:0});
   } else {
-    TweenMax.to(".menu", 1, {left:-350});
+    TweenMax.to(menu, 1, {left:-350});
   }
   
 }
