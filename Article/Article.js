@@ -16,19 +16,19 @@ class Article {
     // set a click handler on the closeButton calling closeArticle
     this.closeArticle = this.closeArticle.bind(this);
     this.closeButton.addEventListener('click', this.closeArticle); 
-
   }
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
+   
     if (this.domElement.style.height === 200+"px"){
-
-      TweenMax.to(this.domElement, 1, {height:"auto"});
+      TweenMax.to(this.domElement, 3, {height:"auto"});
       this.expandButton.textContent = "Click to Close";
     } else {
-      TweenMax.to(this.domElement, 1, {height:200});
+      TweenMax.to(this.domElement, 1, {height:200+"px"});
       this.expandButton.textContent = "Click to Expand";
-    } 
+    }  
+    
     if (this.closeButton.classList.contains("article-read")) {
       
     } else {
@@ -38,6 +38,7 @@ class Article {
 
   closeArticle() {
     this.domElement.classList.add('article-delete');
+    this.expandButton.textContent = "Click to Read Again"
   }
 }
 /* START HERE: 
@@ -55,4 +56,34 @@ const objectArticles = articles.forEach(articleBuilder)
 
 function articleBuilder (domElement) {
   const objectArticles = new Article(domElement)
+};
+
+
+//Stretch for component constructor
+
+
+let test = document.querySelector(".article");
+let test2 = document.createElement('div');
+test2.className = "newArticle";
+test2.classList.add("article");
+test.parentNode.insertBefore(test2, test);
+test2.innerHTML = "<h2></h2><p class='date'></p><p class='lastP'></p><div class='textFade'><span class='expandButton'></span><div><button class = 'closeButton'>X</button>";
+let test3 = document.querySelector(".newArticle");
+test3.querySelector("h2").innerHTML = '<textArea class="inputH2" type="text" name="fname" placeholder="Write your content here..."></textArea>';
+test3.querySelector(".date").innerHTML = '<textArea class="inputDate" type="text" name="fname" placeholder="Write your content here..."></textArea>';
+test3.querySelector(".lastP").innerHTML = '<textArea class="inputLastP" type="text" name="fname" placeholder="Write your content here..."></textArea>';
+
+ class NewArticle extends Article {
+    constructor(domElement) {
+      super(domElement);
+		this.domElement = domElement;
+    }
+ }
+
+const newArticles = document.querySelectorAll('.newArticle');
+// console.log(articles);
+const newObjectArticles = newArticles.forEach(newArticleBuilder)
+
+function newArticleBuilder (domElement) {
+  const newObjectArticles = new NewArticle(domElement)
 };

@@ -27,3 +27,19 @@ body.addEventListener('click', ()=>{
     toggleMenu();
   }
 });
+
+const createFeed = document.querySelector(".createFeed");
+
+createFeed.addEventListener('click', ()=> {
+  feedMaker();
+
+})
+
+const feedMaker = function() {
+  alert('help')
+  test3.classList.add('createArticle');
+  // test2.className = "newArticle";
+  // test2.classList.add("article");
+  // test.parentNode.insertBefore(test2, test);
+};
+
